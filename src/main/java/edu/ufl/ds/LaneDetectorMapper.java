@@ -13,8 +13,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class LaneDetectorMapper extends
-		Mapper<LongWritable, Text, Text, Text> {
+public class LaneDetectorMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 	@Override
 	public void map(LongWritable key, Text value1, Context context)
@@ -34,8 +33,10 @@ public class LaneDetectorMapper extends
 				calendar.setTime(date);
 				int hour = calendar.get(Calendar.HOUR);
 				System.out.println(hour);
-				context.write(new Text(input[0] + "-" + hour), new Text(
-						input[2] + "," + input[3] + "," + input[4]));
+				context.write(
+						new Text(input[0] + "," + hour + ","
+								+ input[1].split(" ")[0]), new Text(input[2]
+								+ "," + input[3] + "," + input[4]));
 			} catch (IOException ex) {
 				Logger.getLogger(LaneDetectorMapper.class.getName()).log(
 						Level.SEVERE, null, ex);
