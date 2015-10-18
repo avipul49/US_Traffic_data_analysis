@@ -31,7 +31,7 @@ public class LaneDetectorMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 				Calendar calendar = GregorianCalendar.getInstance();
 				calendar.setTime(date);
-				int hour = calendar.get(Calendar.HOUR);
+				int hour = calendar.get(Calendar.HOUR_OF_DAY);
 				System.out.println(hour);
 				context.write(
 						new Text(input[0] + "," + hour + ","
